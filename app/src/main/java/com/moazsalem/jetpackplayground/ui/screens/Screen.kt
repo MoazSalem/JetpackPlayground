@@ -29,6 +29,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moazsalem.jetpackplayground.R
+import com.moazsalem.jetpackplayground.ui.theme.urbanist
 
 
 @Composable
@@ -72,7 +73,7 @@ fun  Screen() {
                 modifier = Modifier.size(300.dp)
             )
             Button(onClick = {}, modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp).size(width = 180.dp, height = 55.dp), colors = ButtonDefaults.buttonColors(containerColor = colorScheme.primary)) {
-                Text(text = "Get Started", color = Color.White,fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = "Get Started", color = Color.White,fontSize = 18.sp, fontWeight = FontWeight.Bold, fontFamily = urbanist)
                 Image(
                     painter = painterResource(id = R.drawable.arrow),
                     contentDescription = null,
