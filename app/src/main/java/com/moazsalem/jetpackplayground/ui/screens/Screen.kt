@@ -1,6 +1,7 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +33,8 @@ import com.moazsalem.jetpackplayground.R
 
 @Composable
 fun  Screen() {
+    val colorScheme = MaterialTheme.colorScheme
+    val isDarkTheme = isSystemInDarkTheme()
     Scaffold { innerPadding ->
         Column(modifier = Modifier.fillMaxSize().padding(innerPadding),verticalArrangement = Arrangement.Center, horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally) {
             Box(
@@ -39,10 +44,10 @@ fun  Screen() {
                     .padding(16.dp),
                 contentAlignment = androidx.compose.ui.Alignment.Center,
             ) {
-                Image(
+                Icon(
                     painter = painterResource(id = R.drawable.white_icon),
                     contentDescription = null,
-                    modifier = Modifier.size(32.dp)
+                    tint = if (isDarkTheme) Color(0xff926247) else Color.White,
                 )
             }
             Text(
@@ -54,20 +59,20 @@ fun  Screen() {
                     append(" UI Kit!")
                 },
                 lineHeight = 32.sp,
-                color = Color(0xFF4F3422),
+                color = colorScheme.onBackground,
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp)
             )
-            Text(text = "Your mindful mental health AI companion for everyone, anywhere 🍃",fontWeight = FontWeight.Normal, fontSize = 18.sp, color = Color(0xFF736B66), textAlign = TextAlign.Center, modifier = Modifier.padding(vertical = 16.dp, horizontal = 28.dp))
+            Text(text = "Your mindful mental health AI companion for everyone, anywhere 🍃",fontWeight = FontWeight.Normal, fontSize = 18.sp, color = colorScheme.onSecondaryContainer, textAlign = TextAlign.Center, modifier = Modifier.padding(vertical = 16.dp, horizontal = 28.dp))
             Image(
-                painter = painterResource(id = R.drawable.on_boarding_0),
+                painter = painterResource(id = if (isDarkTheme) R.drawable.on_boarding_0_dark else R.drawable.on_boarding_0),
                 contentDescription = null,
                 modifier = Modifier.size(300.dp)
             )
-            Button(onClick = {}, modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp).size(width = 180.dp, height = 55.dp), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4F3422))) {
-                Text(text = "Get Started", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Button(onClick = {}, modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp).size(width = 180.dp, height = 55.dp), colors = ButtonDefaults.buttonColors(containerColor = colorScheme.primary)) {
+                Text(text = "Get Started", color = Color.White,fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 Image(
                     painter = painterResource(id = R.drawable.arrow),
                     contentDescription = null,
@@ -77,15 +82,15 @@ fun  Screen() {
             Row (modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp)) {
                 Text(
                     text = "Already have an account?",
-                    color = Color(0xFF736B66),
-                    fontSize = 14.sp,
+                    color = colorScheme.onSecondaryContainer,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
                     text = "Sign In.",
                     color = Color(0xFFED7E1C),
                     textDecoration = androidx.compose.ui.text.style.TextDecoration.Underline,
-                    fontSize = 14.sp,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable { println("Text clicked!") }. padding(start = 4.dp)
                 )
